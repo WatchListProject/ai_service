@@ -21,9 +21,9 @@ export class AppService {
         top_p: 0.9,
         prompt: prompt,
         max_tokens: 500,
-        min_tokens: 0,
+        min_tokens: 400,
         temperature: 0.6,
-        system_prompt: "Recommend me movies or series based on the list",
+        system_prompt: "Recommend me movies or series based on the list. Use this format: title: why do you recommend it",
         presence_penalty: 1.15,
         frequency_penalty: 0,
         length_penalty: 1,
@@ -46,7 +46,7 @@ export class AppService {
 
 
     // Intentar obtener el resultado hasta que el estado sea "succeeded"
-    let recommendationText = "";
+    let recommendation = [];
     let attempts = 0;
     let status = 'processing';
 
@@ -64,7 +64,7 @@ export class AppService {
 
       const data2 = await response2.json();
       status = data2.status;
-      recommendationText = data2.output.join("");
+      recommendation = data2.output;
       if (status === 'succeeded') {
         break;
       }
@@ -72,6 +72,8 @@ export class AppService {
       attempts++;
     }
 
+    console.log(recommendation);
+    const recommendationText = recommendation.join("");
     console.log(recommendationText);
     return {
       recommendation: recommendationText, status: status
