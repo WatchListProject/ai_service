@@ -21,7 +21,7 @@ export class AppService {
         top_p: 0.9,
         prompt: prompt,
         max_tokens: 500,
-        min_tokens: 400,
+        min_tokens: 100,
         temperature: 0.6,
         system_prompt: "Recommend me movies or series based on the list. Use this format: title: why do you recommend it",
         presence_penalty: 1.15,
@@ -52,7 +52,7 @@ export class AppService {
 
     while (status !== 'succeeded' && attempts < 5) {
 
-      await new Promise((resolve) => setTimeout(resolve, attempts == 0 ? 6000 : 1000));
+      await new Promise((resolve) => setTimeout(resolve, attempts == 0 ? 7000 : 1000));
 
       const response2 = await fetch(newURL, {
         method: 'GET',
