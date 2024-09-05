@@ -20,13 +20,13 @@ export class AppService {
         top_k: 0,
         top_p: 0.9,
         prompt: prompt,
-        max_tokens: 500,
-        min_tokens: 100,
+        max_tokens: 300,
+        min_tokens: 50,
         temperature: 0.6,
-        system_prompt: "Recommend me movies or series based on the list. Use this format: title: why do you recommend it",
+        system_prompt: "Recommend me movies or series based on the list. Use this format: title: why do you recommend it, dont add a final message",
         presence_penalty: 1.15,
         frequency_penalty: 0,
-        length_penalty: 1,
+        length_penalty: 2,
       },
     };
 
@@ -52,7 +52,7 @@ export class AppService {
 
     while (status !== 'succeeded' && attempts < 5) {
 
-      await new Promise((resolve) => setTimeout(resolve, attempts == 0 ? 7000 : 1000));
+      await new Promise((resolve) => setTimeout(resolve, attempts == 0 ? 6000 : 2000));
 
       const response2 = await fetch(newURL, {
         method: 'GET',
@@ -65,6 +65,7 @@ export class AppService {
       const data2 = await response2.json();
       status = data2.status;
       recommendation = data2.output;
+      console.log(status);
       if (status === 'succeeded') {
         break;
       }
