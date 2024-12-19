@@ -20,13 +20,14 @@ export class AppService {
         top_k: 0,
         top_p: 0.9,
         prompt: prompt,
-        max_tokens: 300,
+        max_tokens: 250,
         min_tokens: 50,
         temperature: 0.6,
-        system_prompt: "Recommend me movies or series based on the list. Use this format: title: why do you recommend it, dont add a final message",
+        system_prompt: `Recommend me 3 media i havent seen yet(movies or series) based on the list. Use this exact format: "title1: why do you recommend it%title2: why do you recommend it%title3: why do you recommend it"
+         dont add a final message`,
         presence_penalty: 1.15,
         frequency_penalty: 0,
-        length_penalty: 2,
+        length_penalty: 1.5
       },
     };
 
@@ -50,7 +51,7 @@ export class AppService {
     let attempts = 0;
     let status = 'processing';
 
-    while (status !== 'succeeded' && attempts < 5) {
+    while (status !== 'succeeded' && attempts < 7) {
 
       await new Promise((resolve) => setTimeout(resolve, attempts == 0 ? 6000 : 2000));
 
