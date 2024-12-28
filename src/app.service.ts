@@ -23,7 +23,7 @@ export class AppService {
         max_tokens: 250,
         min_tokens: 50,
         temperature: 0.6,
-        system_prompt: `Recommend me 3 media i havent seen yet(movies or series) based on the list. Use this exact format: "title1: why do you recommend it%title2: why do you recommend it%title3: why do you recommend it"
+        system_prompt: `Recommend me 3 media i havent seen yet(movies or series) based on my list. Use this exact format: "title1: why do you recommend it%title2: why do you recommend it%title3: why do you recommend it"
          dont add a final message`,
         presence_penalty: 1.15,
         frequency_penalty: 0,
