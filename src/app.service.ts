@@ -23,7 +23,7 @@ export class AppService {
         max_tokens: 250,
         min_tokens: 50,
         temperature: 0.6,
-        system_prompt: `Recommend me 3 media i havent seen yet(movies or series) based on my list. Use this exact format: "title1: why do you recommend it%title2: why do you recommend it%title3: why do you recommend it"
+        system_prompt: `Recommend me 3 media i havent seen yet(movies or series) based on my list. Use this EXACT format: "title1: why do you recommend it%title2: why do you recommend it%title3: why do you recommend it"
          dont add a final message`,
         presence_penalty: 1.15,
         frequency_penalty: 0,
@@ -32,7 +32,7 @@ export class AppService {
     };
 
     // Hacer la llamada a la API
-    const response = await fetch('https://api.replicate.com/v1/models/meta/meta-llama-3.1-405b-instruct/predictions', {
+    const response = await fetch('https://api.replicate.com/v1/models/meta/meta-llama-3-8b-instruct/predictions', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${this.REPLICATE_API_TOKEN}`, // Aquí asumo que el token está en una variable de entorno
